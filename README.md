@@ -9,3 +9,7 @@ You would navigate between the repo steps by checking out to the dedicated branc
 NOTE: the `main` branch is the most advanced. So, if you want to start from scratch, you can use the `step/0` branch.
 
 Link to the wiki is available here => <https://github.com/yactouat/gcp_devops_workshop/wiki>
+
+## Prerequisites
+
+Node.js installed on your machine.
