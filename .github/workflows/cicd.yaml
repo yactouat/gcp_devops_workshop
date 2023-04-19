@@ -3,6 +3,8 @@ name: CI
 on:
   pull_request:
     branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
   test:
@@ -18,3 +20,13 @@ jobs:
           node-version: 18
       - run: npm ci #cf. https://docs.npmjs.com/cli/v9/commands/npm-ci
       - run: npm run test
+
+  build:
+    runs-on: ubuntu-latest
+    name: build docker image
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+      - run: docker build -t gcp-devops-workshop-api .
+      - run: docker image ls
