@@ -43,11 +43,5 @@ jobs:
           registry: ${{ secrets.GAR_REGISTRY }}
           username: _json_key
           password: ${{ secrets.CLOUD_RUN_DEPLOYER_SA_KEY }}
-      - run: docker build -t gcp-devops-workshop-api .
-      # - id: docker-push-tagged
-      #   name: Tag Docker image and push to Google Artifact Registry
-      #   uses: docker/build-push-action@v3
-      #   with:
-      #     push: true
-      #     tags: |
-      #       ${{ secrets.GAR_REPO }}/devops_workshop_api:${{ github.sha }}
+      - run: docker build -t ${{ secrets.GAR_REPO }}/devops_workshop_api:${{ github.sha }} .
+      - run: docker push ${{ secrets.GAR_REPO }}/devops_workshop_api:${{ github.sha }}
