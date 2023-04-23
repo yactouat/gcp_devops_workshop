@@ -100,4 +100,3 @@ typings/
 .tern-port
 
 dist
-!dist/src/*
