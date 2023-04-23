@@ -3,6 +3,8 @@ name: CI
 on:
   pull_request:
     branches: ["main"]
+  push:
+    branches: ["main"]
 
 jobs:
   test:
@@ -19,19 +21,26 @@ jobs:
       - run: npm ci #cf. https://docs.npmjs.com/cli/v9/commands/npm-ci
       - run: npm run test
 
-  build:
+  # Build and publish the Docker image to the GCP Artifact Registry
+  build-publish:
     needs: test
     runs-on: ubuntu-latest
-    name: build docker image
+    environment: staging
+    name: build docker image and push it to the GAR
     steps:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-      - name: build
-        uses: actions/setup-node@v3
+      - name: Login to GAR for testing
+        uses: docker/login-action@v2
         with:
-          node-version: 18
-      - run: npm ci
-      - run: npm run build
-      - run: docker build -t gcp-devops-workshop-api .
-      - run: docker image ls
+          registry: ${{ secrets.GAR_REGISTRY }}
+          username: _json_key
+          password: ${{ secrets.CLOUD_RUN_DEPLOYER_SA_KEY }}
+      - id: docker-push-tagged
+        name: Tag Docker image and push to Google Artifact Registry
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: |
+            ${{ secrets.GAR_REPO }}/devops_workshop_api:${{ github.sha }}
