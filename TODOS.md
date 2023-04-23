@@ -3,6 +3,7 @@
 ## steps
 
 - introduction to monitoring/observability
+  - https://cloud.google.com/run/docs/monitoring
   - invite the students to categorize each of these metrics using the golden signals framework
   - introduction to tracing
 - implement branch protection rules
