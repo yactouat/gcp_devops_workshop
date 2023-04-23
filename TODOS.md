@@ -15,8 +15,9 @@
 - connect to the remote DB in the remote service
 - build a frontend in a CI/CD pipeline
 - CloudBuild version of CI/CD pipeline
+- optimize builds (size, cache, etc.)
 - set up db backups
-- set up multiple environments (staging, prod, etc.)
+- set up multiple environments (staging, prod, etc.) and reflect that in the code
 - introduction to terraform
 - redo the workshop, but with another stack
 - redo the workshop, but with AppEngine
