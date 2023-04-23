@@ -3,7 +3,8 @@
 ## steps
 
 - introduction to monitoring/observability
-- deliver monitoring notifications
+  - invite the students to categorize each of these metrics using the golden signals framework
+  - introduction to tracing
 - implement branch protection rules
 - introduction to the concept of releases
 - Cloud Function to trigger on each new release
