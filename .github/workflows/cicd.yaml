@@ -41,5 +41,5 @@ jobs:
           registry: ${{ secrets.GAR_REGISTRY }}
           username: _json_key
           password: ${{ secrets.CLOUD_RUN_DEPLOYER_SA_KEY }}
-      - run: docker build -t ${{ secrets.GAR_REPO }}/devops_workshop_api:${{ github.sha }} .
-      - run: docker push ${{ secrets.GAR_REPO }}/devops_workshop_api:${{ github.sha }}
+      - run: docker build -t ${{ secrets.GAR_REPO }}/devops-workshop-api:${{ github.sha }} .
+      - run: docker push ${{ secrets.GAR_REPO }}/devops-workshop-api:${{ github.sha }}
