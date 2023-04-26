@@ -10,6 +10,10 @@ API.get("/", (req: Request, res: Response) => {
   });
 });
 
+API.get("/erroring", (req: Request, res: Response) => {
+  throw new Error("This is an error");
+});
+
 export const server = API.listen(8080, () => {
   console.log("server started on port 8080");
 });
