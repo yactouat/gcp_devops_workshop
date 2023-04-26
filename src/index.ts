@@ -10,8 +10,15 @@ API.get("/", (req: Request, res: Response) => {
   });
 });
 
-API.get("/erroring", (req: Request, res: Response) => {
-  throw new Error("This is an error");
+API.get("/error", (req: Request, res: Response) => {
+  res.status(500).json({
+    msg: "API is down",
+    data: null,
+  });
+});
+
+API.get("/crash", (req: Request, res: Response) => {
+  throw new Error("api has crashed");
 });
 
 export const server = API.listen(8080, () => {
